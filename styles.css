@@ -1,5 +1,17 @@
+@font-face
+{
+    font-family: IMFellEnglish;
+    src: url(./fonts/IMFellEnglish/IMFellEnglish-Regular.ttf);
+}
+
 body
 {
     background-color: #0f0f0f;
     color: white;
+    font-family: IMFellEnglish;
+}
+
+h1
+{
+    text-align: center;
 }
