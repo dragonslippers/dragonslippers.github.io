@@ -9,6 +9,13 @@ body
     background-color: #0f0f0f;
     color: white;
     font-family: IMFellEnglish;
+    background-image: url("./images/clara02_by\ Ebba\ G.\ Ågren.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+    animation: blurAnimation 2s;
 }
 
 h1
@@ -46,4 +53,11 @@ h3 a
 h3 a:hover
 {
     color: #afafaf;
+}
+
+@keyframes blurAnimation
+{
+    0% { filter: blur(10px); }
+    50% { filter: blur(1px); }
+    100% { filter: blur(0px); }
 }
