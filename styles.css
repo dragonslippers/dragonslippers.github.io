@@ -73,19 +73,37 @@ h3
     margin: 0 auto;
 }
 
-content
+iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+.content
 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    width: 100%;
+    height: 70%;
+    padding: 0;
+    margin: 0;
 }
 
-content p
+.content p
 {
     padding: 0;
     margin: 0;
+}
+
+.video-grid
+{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    place-content: center;
 }
 
 @keyframes unblurBackdropAnimation
