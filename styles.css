@@ -137,9 +137,9 @@ iframe
 .chromatic-text
 {
     filter: 
-        drop-shadow(-2px 2px 0 red) 
-        drop-shadow(2px 2px 0 blue) 
-        drop-shadow(-2px 2px 0 green);
+        drop-shadow(-2px 2px 2px red) 
+        drop-shadow(2px 2px 2px blue) 
+        drop-shadow(-2px 2px 2px green);
 }
 
 .chromatic-text:hover
