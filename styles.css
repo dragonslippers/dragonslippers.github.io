@@ -9,13 +9,12 @@ body
     background-color: #0f0f0f;
     color: white;
     font-family: IMFellEnglish;
-    background-image: url("./images/clara02_by\ Ebba\ G.\ Ågren.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    overflow: hidden;
     text-align: center;
+    width: 100vw;
+    height: 100vh;   
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 a
@@ -120,7 +119,7 @@ iframe
 
 .blur-overlay
 {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -150,6 +149,41 @@ iframe
 
 .chromatic-text:hover
 {
+}
+
+.parallax
+{
+    position: relative;
+    perspective: 1px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;  
+    overflow: hidden;
+}
+
+.parallax div
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.parallax .foreground
+{
+    background-image: url("./images/foreground.png");
+}
+
+.parallax .subject
+{
+    background-image: url("./images/subject.png");
+}
+
+.parallax .background
+{
+    background-image: url("./images/background.png");
 }
 
 @keyframes unblurBackdropAnimation
