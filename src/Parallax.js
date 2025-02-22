@@ -1,6 +1,6 @@
 const fixedProgress = 0.025;
 let prevTime = performance.now();
-let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
 let targetX = 0, targetY = 0;
 
 document.addEventListener("mousemove", (event) =>
@@ -9,16 +9,28 @@ document.addEventListener("mousemove", (event) =>
     targetY = (event.clientY / window.innerHeight - 0.5) * 100;
 });
 
+if (window.DeviceOrientationEvent)
+{
+    window.addEventListener("deviceorientation", (event) =>
+    {
+        let beta = event.beta || 0;
+        let gamma = event.gamma || 0;
+        
+        targetX = (gamma / 45) * 100;
+        targetY = (beta / 90) * 100;
+    });
+}
+
 function update(time)
 {
     requestAnimationFrame(update);
 
     const deltaTime = (time - prevTime) / 1000;
-    mouseX = fixedProgressLerp(mouseX, targetX, fixedProgress, deltaTime);
-    mouseY = fixedProgressLerp(mouseY, targetY, fixedProgress, deltaTime);
+    currentX = fixedProgressLerp(currentX, targetX, fixedProgress, deltaTime);
+    currentY = fixedProgressLerp(currentY, targetY, fixedProgress, deltaTime);
 
-    document.querySelector(".background").style.transform = `translateX(${mouseX * 0.1}px) translateY(${mouseY * 0.05}px) scale(1.01)`;
-    document.querySelector(".foreground").style.transform = `translateX(${mouseX * -0.4}px) translateY(${mouseY * -0.2}px) scale(1.03)`;
+    document.querySelector(".background").style.transform = `translateX(${currentX * 0.1}px) translateY(${currentY * 0.05}px) scale(1.01)`;
+    document.querySelector(".foreground").style.transform = `translateX(${currentX * -0.4}px) translateY(${currentY * -0.2}px) scale(1.03)`;
 }
 
 function fixedProgressLerp(a, b, fixedProgress, deltaTime)
