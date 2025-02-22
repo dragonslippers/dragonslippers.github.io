@@ -9,17 +9,11 @@ document.addEventListener("mousemove", (event) =>
     targetY = (event.clientY / window.innerHeight - 0.5) * 100;
 });
 
-if (window.DeviceOrientationEvent)
+window.addEventListener("deviceorientation", (event) =>
 {
-    window.addEventListener("deviceorientation", (event) =>
-    {
-        let beta = event.beta || 0;
-        let gamma = event.gamma || 0;
-        
-        targetX = (gamma / 45) * 100;
-        targetY = (beta / 90) * 100;
-    });
-}
+    targetX = (event.beta / 45) * 100;
+    targetY = (event.gamma / 90) * 100;
+});
 
 function update(time)
 {
