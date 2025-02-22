@@ -11,8 +11,8 @@ document.addEventListener("mousemove", (event) =>
 
 window.addEventListener("deviceorientation", (event) =>
 {
-    targetX = (event.beta / 45) * 100;
-    targetY = (event.gamma / 90) * 100;
+    targetX = (event.gamma / 45) * 100;
+    targetY = (event.beta / 90) * 100;
 });
 
 function update(time)
