@@ -2,17 +2,23 @@ const fixedProgress = 0.9;
 let prevTime = performance.now();
 let currentX = 0, currentY = 0;
 let targetX = 0, targetY = 0;
+let useEasing = true;
+
+if (window.DeviceOrientationEvent)
+{
+    window.addEventListener("deviceorientation", (event) =>
+    {
+        targetX = -(event.gamma / 45) * 100;
+        targetY = -(event.beta / 90) * 100;
+        useEasing = false;
+    });
+}
 
 document.addEventListener("mousemove", (event) =>
 {
     targetX = (event.clientX / window.innerWidth - 0.5) * 100;
     targetY = (event.clientY / window.innerHeight - 0.5) * 100;
-});
-
-window.addEventListener("deviceorientation", (event) =>
-{
-    targetX = -(event.gamma / 45) * 100;
-    targetY = -(event.beta / 90) * 100;
+    useEasing = true;
 });
 
 function update(time)
@@ -24,8 +30,19 @@ function update(time)
 
     if (Number.isNaN(deltaTime)) return;
 
-    currentX = fixedProgressLerp(currentX, targetX, fixedProgress, deltaTime);
-    currentY = fixedProgressLerp(currentY, targetY, fixedProgress, deltaTime);
+
+    if (useEasing)
+    {
+        
+
+        currentX = fixedProgressLerp(currentX, targetX, fixedProgress, deltaTime);
+        currentY = fixedProgressLerp(currentY, targetY, fixedProgress, deltaTime);
+    }
+    else
+    {
+        currentX = targetX;
+        currentY = targetY;
+    }
 
     document.querySelector(".background").style.transform = `translateX(${currentX * 0.1}px) translateY(${currentY * 0.05}px) scale(1.01)`;
     document.querySelector(".foreground").style.transform = `translateX(${currentX * -0.4}px) translateY(${currentY * -0.2}px) scale(1.03)`;
