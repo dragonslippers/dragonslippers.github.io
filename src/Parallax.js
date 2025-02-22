@@ -1,4 +1,4 @@
-const fixedProgress = 0.025;
+const fixedProgress = 0.9;
 let prevTime = performance.now();
 let currentX = 0, currentY = 0;
 let targetX = 0, targetY = 0;
@@ -20,6 +20,10 @@ function update(time)
     requestAnimationFrame(update);
 
     const deltaTime = (time - prevTime) / 1000;
+    prevTime = time;
+
+    if (Number.isNaN(deltaTime)) return;
+
     currentX = fixedProgressLerp(currentX, targetX, fixedProgress, deltaTime);
     currentY = fixedProgressLerp(currentY, targetY, fixedProgress, deltaTime);
 
@@ -29,21 +33,12 @@ function update(time)
 
 function fixedProgressLerp(a, b, fixedProgress, deltaTime)
 {
-    return lerp(a, b, 1 - pow(1 - fixedProgress, deltaTime));
+    return lerp(a, b, 1 - Math.pow(1 - fixedProgress, deltaTime));
 }
 
 function lerp(a, b, t)
 {
     return a + (b - a) * t;
-}
-
-function pow(base, exponent)
-{
-    if (exponent === 0) return 1;
-    if (exponent < 0) return 1 / pow(base, -exponent);
-
-    let half = pow(base, exponent >> 1);
-    return (exponent & 1) === 0 ? half * half : half * half * base;
 }
 
 update();
