@@ -151,20 +151,6 @@ iframe
 {
 }
 
-.background-original
-{
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;  
-    overflow: hidden;
-    background-image: url("./images/original.jpg");
-    z-index: -2;
-}
-
 .parallax
 {
     position: absolute;
